@@ -1,0 +1,18 @@
+- Banco escrito em C++
+- orientado a documentos (JSON)
+- resolver problemas de big data
+- escala horizontalmente e verticalmente
+- grandes volumes de dados desestruturados
+- possuem todos os dados necessários
+    - SQL: chaves estrangeiras e relacionamentos entre tabelas
+    - mongo: documentos com todos os dados
+        - não precisamos de JOINs
+        - mais performático
+        - mais custoso
+
+- Quando usar MongoDB
+- assíncrono
+
+- Quando não usar MongoDB
+- Quando houver muitos relacionamentos entre as tabelas
+
