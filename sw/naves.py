@@ -1,5 +1,7 @@
 import flask
 from bson.json_util import dumps
+from pymongo.message import insert
+from pymongo.operations import InsertOne
 import sw.dados
 
 bp = flask.Blueprint("naves", __name__, url_prefix="/naves")
@@ -12,14 +14,15 @@ def listar_naves():
 @bp.route("", methods=["POST"])
 def criar_nave():
     nave = flask.request.json
-    sw.dados.naves.append(nave)
-    id = len(sw.dados.naves) - 1
-    return flask.jsonify({"id": id})
+    result = sw.dados.criar_naves(nave)
+    return flask.jsonify({"id": str(result.inserted_id)})
 
 @bp.route("/<int:id>", methods=["PUT"])
 def modificar_nave(id):
     nave = flask.request.json
-    sw.dados.naves[id] = nave
+    naves = list(sw.dados.naves())
+    nave_velha = naves[id]
+    
     return flask.jsonify({"ok": True})
 
 @bp.route("/<int:id>")

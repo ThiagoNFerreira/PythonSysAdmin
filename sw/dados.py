@@ -34,4 +34,10 @@ def naves():
 
 def criar_naves(nave):
     db = cliente.sw
-    db.naves.insert_many()
+    return db.naves.insert_one(nave)
+
+def modificar_nave(oid, nave):
+    return cliente.sw.naves.update_one(
+        oid,
+        {"$set": nave}
+    )
